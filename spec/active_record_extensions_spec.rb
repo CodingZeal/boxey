@@ -21,8 +21,8 @@ describe ActiveRecordExtensions do
   end
 
   it 'finds a model by the id' do
-    a = Battlestar.create(name: 'Galactica')
-    Battlestar.create(name: 'Pegasus')
+    a = Battlestar.create({:name => 'Galactica'})
+    Battlestar.create({name: 'Pegasus'})
     Battlestar[a.id].name.should == 'Galactica'
   end
 
@@ -32,14 +32,14 @@ describe ActiveRecordExtensions do
     end
 
     it 'finds a model by one of the unique field' do
-      a = Battlestar.create(name: 'Galactica')
-      Battlestar.create(name: 'Pegasus')
+      a = Battlestar.create({:name => 'Galactica'})
+      Battlestar.create({name: 'Pegasus'})
       Battlestar[a.name].name.should == 'Galactica'
     end
 
     it "doesn't find models by non-specified fields" do
-      a = Battlestar.create(name: 'Galactica')
-      Battlestar.create(name: 'Pegasus')
+      a = Battlestar.create({name: 'Galactica'})
+      Battlestar.create({name: 'Pegasus'})
       Battlestar[a.name].name.should == 'Galactica'
     end
   end

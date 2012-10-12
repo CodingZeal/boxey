@@ -1,6 +1,6 @@
-require 'boxey/active_record_extensions'
+require 'active_record_extensions'
 
-class Boxy
+class Boxey
   def self.hi
     puts "Hello world!"
   end
