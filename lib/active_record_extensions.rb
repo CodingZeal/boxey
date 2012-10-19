@@ -11,11 +11,13 @@ class ActiveRecord::Base
     nil
   end
 
-  def self.boxey_field_names(field_names = nil)
-    if field_names
-      @boxey_field_names = field_names
-    else
-      ((@boxey_field_names || []) + [primary_key]).uniq.compact
-    end
+  def self.boxey(*field_names)
+    @boxey_field_names = [primary_key]
+    @boxey_field_names << field_names if field_names
+    @boxey_field_names = @boxey_field_names.flatten.uniq.compact
+  end
+
+  def self.boxey_field_names
+    ((@boxey_field_names || []) << primary_key).uniq.compact
   end
 end
