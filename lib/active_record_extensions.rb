@@ -4,11 +4,12 @@ class ActiveRecordExtensions; end
 
 class ActiveRecord::Base
   def self.[](identifier)
-    boxey_field_names.each do |field_name|
-      record = send(:"find_by_#{field_name}", identifier)
-      return record if record
-    end
-    nil
+    query = [
+      boxey_field_names.map do |field_name|
+        "#{field_name} = ?"
+      end.join(" OR ")
+    ] + [identifier] * boxey_field_names.length
+    where(query).first
   end
 
   def self.boxey(*field_names)
