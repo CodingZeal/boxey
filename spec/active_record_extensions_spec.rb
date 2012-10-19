@@ -28,7 +28,7 @@ describe ActiveRecordExtensions do
 
   context "when the unique fields are specified" do
     before do
-      Battlestar.const_set("UNIQUE_IDENTIFIER_FIELD_NAMES", [:id, :name])
+      Battlestar.send(:boxey_field_names, [:id, :name])
     end
 
     it 'finds a model by one of the unique field' do

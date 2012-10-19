@@ -4,15 +4,18 @@ class ActiveRecordExtensions; end
 
 class ActiveRecord::Base
   def self.[](identifier)
-    unique_identifiers.each do |field_name|
+    boxey_field_names.each do |field_name|
       record = send(:"find_by_#{field_name}", identifier)
       return record if record
     end
     nil
   end
 
-  # Returns a list of attribute_names that should be unique
-  def self.unique_identifiers
-    (self::UNIQUE_IDENTIFIER_FIELD_NAMES rescue []) << primary_key
+  def self.boxey_field_names(field_names = nil)
+    if field_names
+      @boxey_field_names = field_names
+    else
+      ((@boxey_field_names || []) + [primary_key]).uniq.compact
+    end
   end
 end
