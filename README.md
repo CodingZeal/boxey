@@ -1,6 +1,3 @@
-Documentation
-=============
-
 Boxey provides the [] element reference operator to ActiveRecord classes.
 
 # Installation
@@ -11,9 +8,9 @@ Add this line to your Gemfile:
 
 # Configuration
 
-With the boxey gem installed, all ActiveRecord classes gain the [] method, which fetches by the class's primary_key by default.
+With the boxey gem installed, all ActiveRecord classes gain the `[]` method, which fetches by the class's `primary_key` by default.
 
-You may specify additional fields, presumably fields that validate uniqueness, by calling the boxey method.
+You may specify additional fields, presumably fields that validate uniqueness, by calling the `boxey` method.
 
     class User < ActiveRecord::Base
       boxey :id, :login, :email
