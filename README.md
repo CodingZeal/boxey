@@ -1,17 +1,17 @@
-Boxey
-=====
+Documentation
+=============
 
-Boxey provides the [] operator to ActiveRecord classes.
+Boxey provides the [] element reference operator to ActiveRecord classes.
 
-# Documentation
+# Installation
 
 Add this line to your Gemfile:
 
-`gem "boxey", :git => "git://github.com/roguevalley/boxey.git"`
-
-All ActiveRecord classes gain the [] method as an accessor.  By default, it fetches by the class's primary_key.
+`gem 'boxey'`
 
 # Configuration
+
+With the boxey gem installed, all ActiveRecord classes gain the [] method, which fetches by the class's primary_key by default.
 
 You may specify additional fields, presumably fields that validate uniqueness, by calling the boxey method.
 
@@ -25,8 +25,8 @@ You may specify additional fields, presumably fields that validate uniqueness, b
 
 Given the configuration above:
 
-`User[1] # returns the first User with an id (or login or email) of 1.
+`User[1]` returns the first User with an id (or login or email) of `1`.
 
-`User['me@example.com']` # returns the first User with an email (or id or login) of 'me@example.com'.
+`User['me@example.com']` returns the first User with an email (or id or login) of `'me@example.com'`.
 
-Returns nil if no match is found.
+`[]` returns `nil` if no match is found.
