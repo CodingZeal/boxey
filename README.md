@@ -8,9 +8,11 @@ Add this line to your Gemfile:
 
 # Configuration
 
-With the boxey gem installed, all ActiveRecord classes gain the `[]` method, which fetches by the class's `primary_key` by default.
+With the boxey gem installed, all ActiveRecord classes gain the `[]` method.
 
-You may specify additional fields, presumably fields that validate uniqueness, by calling the `boxey` method.
+By default, `[]` fetches by the class's `primary_key` and any other fields that are validated by uniqueness (unless the validation has `if` conditions).
+
+Optionally, you may explicitly specify the fields to query by calling the `boxey` method.
 
     class User < ActiveRecord::Base
       boxey :id, :login, :email
@@ -22,8 +24,8 @@ You may specify additional fields, presumably fields that validate uniqueness, b
 
 Given the configuration above:
 
-`User[1]` returns the first User with an id (or login or email) of `1`.
+`User[1]` returns the User with an id of `1`.
 
-`User['me@example.com']` returns the first User with an email (or id or login) of `'me@example.com'`.
+`User['me@example.com']` returns the User with an email of `'me@example.com'`.
 
 `[]` returns `nil` if no match is found.

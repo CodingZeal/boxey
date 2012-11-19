@@ -13,12 +13,25 @@ class ActiveRecord::Base
   end
 
   def self.boxey(*field_names)
-    @boxey_field_names = [primary_key]
-    @boxey_field_names << field_names if field_names
-    @boxey_field_names = @boxey_field_names.flatten.uniq.compact
+    @field_names = field_names
   end
 
   def self.boxey_field_names
-    ((@boxey_field_names || []) << primary_key).uniq.compact
+    @boxey_field_names ||=
+      if @field_names.present?
+        [primary_key, @field_names].flatten.uniq.compact
+      else
+        default_boxey_field_names
+      end
+  end
+
+  def self.default_boxey_field_names
+    [
+      primary_key,
+      validators
+        .select { |v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }
+        .reject { |v| v.options.keys.include?(:if) }
+        .map(&:attributes)
+    ].flatten.uniq.compact
   end
 end

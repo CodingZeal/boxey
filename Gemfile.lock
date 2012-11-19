@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    boxey (0.0.4)
+    boxey (1.0)
       activerecord
 
 GEM

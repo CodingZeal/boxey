@@ -26,8 +26,11 @@ describe ActiveRecordExtensions do
       Battlestar[2].should == pegasus
     end
 
+    it 'find by fields that are validated by uniqness' do
+      Battlestar['Galactica'].should == galactica
+    end
+
     it "doesn't find models by other fields" do
-      Battlestar['Galactica'].should be_nil
       Battlestar[23].should be_nil
     end
   end

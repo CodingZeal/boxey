@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = "boxey"
-  s.version     = "0.0.5"
+  s.version     = "1.0"
   s.date        = "2012-10-19"
-  s.authors     = ["Rob Head", "Ryan Spore"]
+  s.authors     = ["Rob Head", "Ryan Spore", "Sean Culver"]
   s.email       = "robert.head@gmail.com"
   s.files       = ["lib/boxey.rb"]
   s.homepage    = "http://github.com/roguevalley/boxey"
