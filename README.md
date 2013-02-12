@@ -12,7 +12,7 @@ With the boxey gem installed, all ActiveRecord classes gain the `[]` method.
 
 By default, `[]` fetches by the class's `primary_key` and any other fields that are validated by uniqueness (unless the validation has `if` conditions).
 
-Optionally, you may explicitly specify the fields to query by calling the `boxey` method.
+Optionally, you may explicitly specify the fields to query and their relative priority by calling the `boxey` method.
 
     class User < ActiveRecord::Base
       boxey :id, :login, :email
